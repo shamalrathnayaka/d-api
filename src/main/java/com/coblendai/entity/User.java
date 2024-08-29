@@ -1,5 +1,10 @@
 package com.coblendai.entity;
 
+import java.sql.Timestamp;
+import java.util.Set;
+
+import com.coblendai.enums.Status;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,94 +23,47 @@ public class User {
   private Long id;
 
   private String userId;
-
   private String firstName;
-
   private String lastName;
-
-  private String email;
-
-  private String password;
-
-  private String imageUrl;
-
-  private String companyName;
-
-  private String address;
-
-  private String suburb;
-
+  private String profileImageUrl;
   private String bio;
-
-  private String state;
-
-  private String postcode;
-
-  private String bdm;
-
-  private String bdmEmail;
-
   private String abn;
-
-  private String mobileNumber;
-
-  private String phoneNumber;
-
   private String ccEmail;
+  private Double commission;
+  private Status status;
+  private Timestamp modifiedOn;
+  private Timestamp createdOn;
+  private Timestamp agreedOn;
 
-  private Double commision;
+  private Boolean isCompanyAdmin;
+  private Integer flagPass;
+  private Boolean isUConnect;
+  private String membershipStatus;
 
   private Integer type;
 
-  private Integer status;
+  @ManyToOne
+  @JoinColumn(name = "company_id")
+  private Company company;
 
-  private Integer flagPass;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<AddressHistory> addresses;
 
-  private Long loginTime;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<EmailHistory> emails;
 
-  private Long modifiedTime;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<PasswordHistory> passwords;
 
-  private Long createTime;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<LoginHistory> logins;
 
-  private Long agreementTime;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<ContactHistory> contacts;
 
-  private Integer adminRole;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<BankAccount> bankAccounts;
 
-  private Integer adminStatus;
-
-  private String firstNameBidx;
-
-  private String lastNameBidx;
-
-  private String emailBidx;
-
-  private String mobileNumberBidx;
-
-  private String tenant;
-
-  private String bankaccountName;
-
-  private String bankaccountBsb;
-
-  private String bankaccountNumber;
-
-  private String companyId;
-
-  private Boolean isCompanyAdmin;
-
-  private String billingDate;
-
-  private Boolean isUConnect;
-
-  private String membershipStatus;
-
-  private String stripeCustomerId;
-
-  private String stripeProductId;
-
-  private String stripePriceId;
-
-  private String stripeSubscriptionId;
-
-  private String stripeConnectSubscriptionId;
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  private Set<Role> roles;
 }
