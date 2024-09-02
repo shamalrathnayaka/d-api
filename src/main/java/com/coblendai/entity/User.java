@@ -35,12 +35,11 @@ public class User {
   private Timestamp createdOn;
   private Timestamp agreedOn;
 
-  private Boolean isCompanyAdmin;
-  private Integer flagPass;
-  private Boolean isUConnect;
-  private String membershipStatus;
-
-  private Integer type;
+  // private String membershipStatus; // can be identified with associated roles
+  // private Integer flagPass; // can be removed by changing the status
+  // private Boolean isUConnect; // gonna be a role value
+  // private Boolean isCompanyAdmin; // gonna be a role value
+  // private Integer type; // not applicable I guess
 
   @ManyToOne
   @JoinColumn(name = "company_id")
@@ -64,6 +63,9 @@ public class User {
   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
   private Set<BankAccount> bankAccounts;
 
-  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+  // @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval =
+  // true)
+  @ManyToMany(fetch = FetchType.LAZY)
+  @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
   private Set<Role> roles;
 }

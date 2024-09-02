@@ -1,5 +1,7 @@
 package com.coblendai.entity;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +21,6 @@ public class Role {
 
   private String name;
 
-  @ManyToOne(fetch = FetchType.LAZY)
-  @JoinColumn(name = "user_id")
-  private User user;
+  @ManyToMany(fetch = FetchType.LAZY, mappedBy = "roles")
+  private Set<User> users;
 }

@@ -43,16 +43,16 @@ public class Company {
     private StripeCustomer stripeCustomer;
 
     @OneToMany(mappedBy = "company")
-    private Set<AddressHistory> addresses;
+    private Set<CompanyAddressHistory> addresses;
 
     @OneToMany(mappedBy = "company")
-    private Set<ContactHistory> contacts;
+    private Set<CompanyContactHistory> contacts;
 
     @OneToMany(mappedBy = "company")
     private Set<CompanySocial> socials;
 
     @OneToMany(mappedBy = "company")
-    private Set<CoordinateHistory> coordinates;
+    private Set<CompanyCoordinateHistory> coordinates;
 
     @OneToMany(mappedBy = "company")
     private Set<User> users;

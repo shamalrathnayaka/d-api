@@ -21,6 +21,7 @@ public class EmailHistory {
 
     private String email;
     private Timestamp createdDate;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;

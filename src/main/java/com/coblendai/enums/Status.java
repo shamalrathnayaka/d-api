@@ -3,7 +3,16 @@ package com.coblendai.enums;
 public enum Status {
     ACTIVE("ACTIVE", 1),
     INACTIVE("INACTIVE", 2),
-    DELETED("DELETED", 3);
+    SUSPENDED("SUSPENDED", 3),
+    DELETED("DELETED", 4),
+    PENDING("PENDING", 5),
+    BANNED("BANNED", 6),
+    LOCKED("LOCKED", 7),
+    VERIFIED("VERIFIED", 8),
+    UNVERIFIED("UNVERIFIED", 9),
+    ARCHIVED("ARCHIVED", 10),
+    AWAITING_APPROVAL("AWAITING_APPROVAL", 11),
+    DEACTIVATED("DEACTIVATED", 12);
 
     private final String key;
     private final int value;

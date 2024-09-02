@@ -1,27 +1,33 @@
 package com.coblendai.entity;
 
+import com.coblendai.enums.AddressStatus;
 import jakarta.persistence.*;
-import java.sql.Timestamp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Entity
-@Table(name = "password_history")
+@Table(name = "company_address_history")
 @Data
 @AllArgsConstructor
 @Builder
 @NoArgsConstructor
-public class PasswordHistory {
+public class CompanyAddressHistory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String password;
+    private String address;
+    private String suburb;
+    private String postcode;
+    private String state;
+    private AddressStatus status;
     private Timestamp createdDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "company_id")
+    private Company company;
 }
